@@ -36,6 +36,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Lightweight health endpoint for Render health checks and uptime pings
+app.get("/healthz", (_req, res) => {
+  res.status(200).send("ok");
+});
+
 (async () => {
   const server = await registerRoutes(app);
 
@@ -44,7 +49,7 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
+    console.error(err);
   });
 
   // importantly only setup vite in development and after

@@ -10,5 +10,9 @@ services:
     envVars:
       - key: NPM_CONFIG_PRODUCTION
         value: "false"
-    healthCheckPath: /
+    healthCheckPath: /healthz
+cron:
+  - name: keep-alive
+    schedule: "*/10 * * * *"
+    command: curl -fsS https://radiant-adorn.onrender.com/healthz || true
 
