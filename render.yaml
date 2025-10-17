@@ -11,8 +11,4 @@ services:
       - key: NODE_ENV
         value: production
     healthCheckPath: /
-    disk:
-      name: app-cache
-      mountPath: /opt/render/project/src/.cache
-      sizeGB: 1
-
+    
